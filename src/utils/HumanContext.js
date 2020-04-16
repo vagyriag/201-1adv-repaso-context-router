@@ -9,4 +9,6 @@ export const HumanContext = React.createContext({
     color: '#ffff00',
   },
   setConfig: () => null,
+  list: [],
+  setList: () => null,
 });
