@@ -5,6 +5,7 @@ import { Identify } from '../Identify/Identify';
 import { HumanContext } from '../../utils/HumanContext';
 import { v4 as uuidv4 } from 'uuid';
 import { Configure } from '../Configure/Configure';
+import { Human } from '../../components/Human/Human';
 
 export const App = () => {
 
@@ -30,6 +31,8 @@ export const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/identificar" component={Identify} />
         <Route path="/configurar" component={Configure} />
+
+        <Human name={name} id={id} height={config.height} color={config.color} />
       </BrowserRouter>
     </HumanContext.Provider>
   </div>);

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Slider, makeStyles } from '@material-ui/core';
+import { Slider, makeStyles, Typography } from '@material-ui/core';
 import { GithubPicker } from 'react-color';
 import { HumanContext } from '../../utils/HumanContext';
+import { Redirect } from 'react-router-dom';
 
 export const Configure = () => {
   const context = React.useContext(HumanContext);
@@ -21,7 +22,15 @@ export const Configure = () => {
     });
   }
 
+  if(context.name.length < 3){
+    return <Redirect to="/identificar" />;
+  }
+
   return (<div>
+    <Typography>
+      {context.name}
+    </Typography>
+
     <label className={classes.label}>
       Altura de la persona
     </label>
