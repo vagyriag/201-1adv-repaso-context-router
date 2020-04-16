@@ -6,7 +6,7 @@ export const Home = () => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push('/test');
+    history.push('/identificar');
   }
 
   return (<div>
