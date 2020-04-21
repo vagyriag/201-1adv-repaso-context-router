@@ -2,9 +2,14 @@ import * as React from 'react';
 import { TextField, Typography, Button } from '@material-ui/core';
 import { HumanContext } from '../../utils/HumanContext';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export const Identify = () => {
   const context = React.useContext(HumanContext);
+
+  React.useEffect(() => {
+    context.setId(uuidv4());
+  }, []);
   
   const handleName = (ev) => {
     context.setName(ev.target.value);

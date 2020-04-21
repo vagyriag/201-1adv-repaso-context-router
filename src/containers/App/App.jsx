@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Home } from '../Home/Home';
 import { Identify } from '../Identify/Identify';
 import { HumanContext } from '../../utils/HumanContext';
-import { v4 as uuidv4 } from 'uuid';
 import { Configure } from '../Configure/Configure';
 import { Human } from '../../components/Human/Human';
 import { Typography } from '@material-ui/core';
@@ -11,26 +10,20 @@ import { Typography } from '@material-ui/core';
 export const App = () => {
 
   const [ name, setName ] = React.useState('');
-  const [ id, setId ] = React.useState(uuidv4());
+  const [ id, setId ] = React.useState('');
 
   const [ config, setConfig ] = React.useState({
     height: 0,
     color: '#ffff00',
   });
 
-  const [ list, setList ] = React.useState([
-    {
-      name: 'humano por defecto',
-      id: 1231234124,
-      color: '#0000ff',
-      height: 50,
-    }
-  ]);
+  const [ list, setList ] = React.useState([]);
 
   const value = {
     name: name,
     setName: setName,
     id: id,
+    setId: setId,
     config: config,
     setConfig: setConfig,
     list: list,
