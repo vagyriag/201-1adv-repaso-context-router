@@ -5,7 +5,7 @@ import { Identify } from '../Identify/Identify';
 import { HumanContext } from '../../utils/HumanContext';
 import { Configure } from '../Configure/Configure';
 import { Human } from '../../components/Human/Human';
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 
 export const App = () => {
 
@@ -29,6 +29,10 @@ export const App = () => {
   React.useEffect(() => {
     localStorage.setItem('list', JSON.stringify(list));
   }, [ list ]);
+
+  const handleDelete = () => {
+    setList([]);
+  }
 
   const handleFinish = () => {
     setList([
@@ -75,6 +79,10 @@ export const App = () => {
           return <Human key={human.id} {...human} />
           //return <Human key={human.id} name={human.name} id={human.id} height={human.height} color={human.color} />;
         })}
+
+        <Button onClick={handleDelete}>
+          Borrar galería
+        </Button>
       </BrowserRouter>
     </HumanContext.Provider>
   </div>);
