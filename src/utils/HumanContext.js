@@ -12,4 +12,5 @@ export const HumanContext = React.createContext({
   setConfig: () => null,
   list: [],
   setList: () => null,
+  handleFinish: () => null,
 });

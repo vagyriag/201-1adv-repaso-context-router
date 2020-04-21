@@ -19,6 +19,23 @@ export const App = () => {
 
   const [ list, setList ] = React.useState([]);
 
+  const handleFinish = () => {
+    setList([
+      ...list,
+      {
+        name: name,
+        id: id,
+        height: config.height,
+        color: config.color,
+      }
+    ]);
+    setName('');
+    setConfig({
+      height: 0,
+      color: '#ffff00',
+    });
+  }
+
   const value = {
     name: name,
     setName: setName,
@@ -28,6 +45,7 @@ export const App = () => {
     setConfig: setConfig,
     list: list,
     setList: setList,
+    handleFinish,
   }
 
   return (<div>

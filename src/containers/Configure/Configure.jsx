@@ -24,20 +24,7 @@ export const Configure = () => {
   }
 
   const handleFinish = () => {
-    context.setList([
-      ...context.list,
-      {
-        name: context.name,
-        id: context.id,
-        height: context.config.height,
-        color: context.config.color,
-      }
-    ]);
-    context.setName('');
-    context.setConfig({
-      height: 0,
-      color: '#ffff00',
-    });
+    context.handleFinish();
     history.push('/');
   }
 
