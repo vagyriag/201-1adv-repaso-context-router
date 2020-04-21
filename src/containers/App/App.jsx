@@ -34,6 +34,16 @@ export const App = () => {
     setList([]);
   }
 
+  const handleHumanDelete = (id) => {
+    const index = list.findIndex((elem) => {
+      return elem.id === id;
+    });
+    setList([
+      ...list.slice(0, index),
+      ...list.slice(index + 1),
+    ]);
+  }
+
   const handleFinish = () => {
     setList([
       ...list,
@@ -75,8 +85,9 @@ export const App = () => {
         <Typography style={{ marginTop: 100 }}>
           Lista de humanos creados:
         </Typography>
-        {list.map(human => {
-          return <Human key={human.id} {...human} />
+        {list.map((human, index) => {
+          //return <Human key={human.id} {...human} onDelete={handleHumanDelete} />
+          return <Human key={human.id} {...human} onDelete={() => handleHumanDelete(human.id)} />
           //return <Human key={human.id} name={human.name} id={human.id} height={human.height} color={human.color} />;
         })}
 
