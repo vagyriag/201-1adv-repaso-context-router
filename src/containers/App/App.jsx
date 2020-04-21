@@ -82,18 +82,19 @@ export const App = () => {
 
         <Human name={name} id={id} height={config.height} color={config.color} />
 
-        <Typography style={{ marginTop: 100 }}>
-          Lista de humanos creados:
-        </Typography>
-        {list.map((human, index) => {
-          //return <Human key={human.id} {...human} onDelete={handleHumanDelete} />
-          return <Human key={human.id} {...human} onDelete={() => handleHumanDelete(human.id)} />
-          //return <Human key={human.id} name={human.name} id={human.id} height={human.height} color={human.color} />;
-        })}
-
-        <Button onClick={handleDelete}>
-          Borrar galería
-        </Button>
+        {list.length > 0 && <div>
+          <Typography style={{ marginTop: 100 }}>
+            Lista de humanos creados:
+          </Typography>
+          {list.map((human) => {
+            //return <Human key={human.id} {...human} onDelete={handleHumanDelete} />
+            return <Human key={human.id} {...human} onDelete={() => handleHumanDelete(human.id)} />
+            //return <Human key={human.id} name={human.name} id={human.id} height={human.height} color={human.color} />;
+          })}
+          <Button onClick={handleDelete}>
+            Borrar galería
+          </Button>
+        </div>}
       </BrowserRouter>
     </HumanContext.Provider>
   </div>);
