@@ -6,6 +6,7 @@ import { HumanContext } from '../../utils/HumanContext';
 import { Configure } from '../Configure/Configure';
 import { Human } from '../../components/Human/Human';
 import { Typography, Button } from '@material-ui/core';
+import { userCol } from '../../utils/firebase';
 
 export const App = () => {
 
@@ -18,17 +19,31 @@ export const App = () => {
   });
 
   const [ list, setList ] = React.useState([]);
+  const [ loaded, setLoaded ] = React.useState(false);
 
   React.useEffect(() => {
-    const listString = localStorage.getItem('list');
+    /*const listString = localStorage.getItem('list');
     if(listString !== null){
       setList(JSON.parse(listString));
-    }
+    }*/
+    userCol.doc('gavi').get().then(function(doc) {
+      if (doc.exists && doc.data().list) {
+        setList(doc.data().list);
+      }
+      setLoaded(true);
+    }).catch(function(error) {
+      console.log("Error getting document:", error);
+    });
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem('list', JSON.stringify(list));
-  }, [ list ]);
+    /*localStorage.setItem('list', JSON.stringify(list));*/
+    if(loaded){
+      userCol.doc('gavi').set({
+        list: list,
+      });
+    }
+  }, [ list, loaded ]);
 
   const handleDelete = () => {
     setList([]);
