@@ -6,7 +6,7 @@ import { HumanContext } from '../../utils/HumanContext';
 import { Configure } from '../Configure/Configure';
 import { Human } from '../../components/Human/Human';
 import { Typography, Button } from '@material-ui/core';
-import { userCol } from '../../utils/firebase';
+import { userCol, humansCol } from '../../utils/firebase';
 
 export const App = () => {
 
@@ -27,7 +27,7 @@ export const App = () => {
       setList(JSON.parse(listString));
     }*/
     userCol.doc('gavi').onSnapshot((doc) => {
-      if(doc.data().list){
+      if(doc.exists && doc.data().list){
         setList(doc.data().list);
       }
       setLoaded(true);
@@ -55,23 +55,26 @@ export const App = () => {
       ...list.slice(0, index),
       ...list.slice(index + 1),
     ]);
+    humansCol.doc(id).delete();
   }
 
   const handleFinish = () => {
+    const newHuman = {
+      name: name,
+      id: id,
+      height: config.height,
+      color: config.color,
+    };
     setList([
       ...list,
-      {
-        name: name,
-        id: id,
-        height: config.height,
-        color: config.color,
-      }
+      newHuman
     ]);
     setName('');
     setConfig({
       height: 0,
       color: '#ffff00',
     });
+    humansCol.doc(newHuman.id).set(newHuman);
   }
 
   const value = {
