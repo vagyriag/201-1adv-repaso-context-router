@@ -26,13 +26,11 @@ export const App = () => {
     if(listString !== null){
       setList(JSON.parse(listString));
     }*/
-    userCol.doc('gavi').get().then(function(doc) {
-      if (doc.exists && doc.data().list) {
+    userCol.doc('gavi').onSnapshot((doc) => {
+      if(doc.data().list){
         setList(doc.data().list);
       }
       setLoaded(true);
-    }).catch(function(error) {
-      console.log("Error getting document:", error);
     });
   }, []);
 
