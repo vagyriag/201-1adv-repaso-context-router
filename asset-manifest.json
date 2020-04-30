@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/201-1adv-repaso-context-router/static/js/main.54757bfb.chunk.js",
+    "main.js.map": "/201-1adv-repaso-context-router/static/js/main.54757bfb.chunk.js.map",
+    "runtime-main.js": "/201-1adv-repaso-context-router/static/js/runtime-main.9a126f49.js",
+    "runtime-main.js.map": "/201-1adv-repaso-context-router/static/js/runtime-main.9a126f49.js.map",
+    "static/js/2.cd0e2567.chunk.js": "/201-1adv-repaso-context-router/static/js/2.cd0e2567.chunk.js",
+    "static/js/2.cd0e2567.chunk.js.map": "/201-1adv-repaso-context-router/static/js/2.cd0e2567.chunk.js.map",
+    "index.html": "/201-1adv-repaso-context-router/index.html",
+    "precache-manifest.8e35f5ac4c927ea612c671fde1db29ed.js": "/201-1adv-repaso-context-router/precache-manifest.8e35f5ac4c927ea612c671fde1db29ed.js",
+    "service-worker.js": "/201-1adv-repaso-context-router/service-worker.js",
+    "static/js/2.cd0e2567.chunk.js.LICENSE.txt": "/201-1adv-repaso-context-router/static/js/2.cd0e2567.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9a126f49.js",
+    "static/js/2.cd0e2567.chunk.js",
+    "static/js/main.54757bfb.chunk.js"
+  ]
+}
