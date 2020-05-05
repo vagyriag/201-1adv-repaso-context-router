@@ -8,8 +8,10 @@ export const Identify = () => {
   const context = React.useContext(HumanContext);
 
   React.useEffect(() => {
-    context.setId(uuidv4());
-  }, []);
+    if(!context.id){
+      context.setId(uuidv4());
+    }
+  }, [ context.id ]);
   
   const handleName = (ev) => {
     context.setName(ev.target.value);

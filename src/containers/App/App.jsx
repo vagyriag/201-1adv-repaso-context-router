@@ -22,26 +22,26 @@ export const App = () => {
   const [ loaded, setLoaded ] = React.useState(false);
 
   React.useEffect(() => {
-    /*const listString = localStorage.getItem('list');
+    const listString = localStorage.getItem('list');
     if(listString !== null){
       setList(JSON.parse(listString));
-    }*/
-    userCol.doc('gavi').onSnapshot((doc) => {
+    }
+    /*userCol.doc('gavi').onSnapshot((doc) => {
       if(doc.exists && doc.data().list){
         setList(doc.data().list);
       }
       setLoaded(true);
-    });
+    });*/
   }, []);
 
   React.useEffect(() => {
-    /*localStorage.setItem('list', JSON.stringify(list));*/
-    if(loaded){
+    localStorage.setItem('list', JSON.stringify(list));
+    /*if(loaded){
       userCol.doc('gavi').set({
         list: list,
       });
-    }
-  }, [ list, loaded ]);
+    }*/
+  }, [ list ]);
 
   const handleDelete = () => {
     setList([]);
@@ -55,7 +55,20 @@ export const App = () => {
       ...list.slice(0, index),
       ...list.slice(index + 1),
     ]);
-    humansCol.doc(id).delete();
+    //humansCol.doc(id).delete();
+  }
+
+  const handleHumanEdit = (id) => {
+    const index = list.findIndex((elem) => {
+      return elem.id === id;
+    });
+    const human = list[index];
+    setName(human.name);
+    setId(human.id);
+    setConfig({
+      height: human.height,
+      color: human.color,
+    })
   }
 
   const handleFinish = () => {
@@ -65,16 +78,32 @@ export const App = () => {
       height: config.height,
       color: config.color,
     };
-    setList([
-      ...list,
-      newHuman
-    ]);
     setName('');
+    setId('');
     setConfig({
       height: 0,
       color: '#ffff00',
     });
-    humansCol.doc(newHuman.id).set(newHuman);
+    //humansCol.doc(newHuman.id).set(newHuman);
+
+    const index = list.findIndex((elem) => {
+      return elem.id === newHuman.id;
+    });
+    if(index === -1){
+      setList([
+        ...list,
+        newHuman
+      ]);
+    } else {
+      /*const newList = list.slice();
+      newList.splice(index, 1, newHuman);
+      setList(newList);*/
+      setList([
+        ...list.slice(0, index),
+        newHuman,
+        ...list.slice(index + 1)
+      ]);
+    }
   }
 
   const value = {
@@ -104,7 +133,10 @@ export const App = () => {
           </Typography>
           {list.map((human) => {
             //return <Human key={human.id} {...human} onDelete={handleHumanDelete} />
-            return <Human key={human.id} {...human} onDelete={() => handleHumanDelete(human.id)} />
+            return <div key={human.id}>
+              <Human {...human} onDelete={() => handleHumanDelete(human.id)} />
+              <Button onClick={() => handleHumanEdit(human.id)}>Editar</Button>
+            </div>
             //return <Human key={human.id} name={human.name} id={human.id} height={human.height} color={human.color} />;
           })}
           <Button onClick={handleDelete}>
